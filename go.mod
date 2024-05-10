@@ -1,3 +1,3 @@
-module jordanreger.com/web/vanity
+module jordanreger.com/vanity
 
 go 1.22.1
