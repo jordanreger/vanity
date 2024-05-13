@@ -18,7 +18,12 @@ import (
 func main() {
   mux := http.NewServeMux()
 
-  vanity.Serve(mux)
+  vanity_config, err := os.ReadFile("vanity.json")
+  if err != nil {
+    panic(err)
+  }
+
+  vanity.Serve(mux, string(vanity_config))
 
   log.Fatal(http.ListenAndServe(":8080", mux))
 }

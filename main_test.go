@@ -4,15 +4,23 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
 	"jordanreger.com/vanity"
 )
 
+var config string
+
+func init() {
+	b, _ := os.ReadFile("vanity.json")
+	config = string(b)
+}
+
 func TestExample1(t *testing.T) {
 	mux := http.NewServeMux()
 
-	vanity.Serve(mux)
+	vanity.Serve(mux, config)
 
 	server := httptest.NewServer(mux)
 	defer server.Close()
@@ -33,7 +41,7 @@ func TestExample1(t *testing.T) {
 func TestExample2(t *testing.T) {
 	mux := http.NewServeMux()
 
-	vanity.Serve(mux)
+	vanity.Serve(mux, config)
 
 	server := httptest.NewServer(mux)
 	defer server.Close()

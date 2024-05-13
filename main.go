@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -38,19 +37,12 @@ type url struct {
 
 var cfg config
 
-func init() {
-	config_file, err := os.ReadFile("vanity.json")
+func Serve(mux *http.ServeMux, vanity_json string) {
+	err := json.Unmarshal([]byte(vanity_json), &cfg)
 	if err != nil {
 		panic(err)
 	}
 
-	err = json.Unmarshal(config_file, &cfg)
-	if err != nil {
-		panic(err)
-	}
-}
-
-func Serve(mux *http.ServeMux) {
 	for _, url := range cfg.URLs {
 		mux.Handle("/"+url.Pkg+"/", Handler())
 	}
