@@ -48,3 +48,7 @@ func main() {
 ```
 
 How to test: `go test -v -run Example`
+
+## Contributing
+
+Send patches/bug reports to <~jordanreger/public-inbox@lists.sr.ht>
