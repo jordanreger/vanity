@@ -1,0 +1,13 @@
+{
+  "host": "example.com",
+  "urls": [
+    {
+      "pkg": "example1",
+      "url": "git.sr.ht/example/example1"
+    },
+    {
+      "pkg": "example2",
+      "url": "github.com/example/example2"
+    }
+  ]
+}
